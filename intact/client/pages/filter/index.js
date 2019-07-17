@@ -150,29 +150,15 @@ Page({
     let gKernel = kernel(6);
     let smoothData = new Uint8ClampedArray(width * height * 4);
 
-    for (let x = 0; x < width; x++) {
-      for (let y = 0; y < height; y++) {
-        let pointIndex = (x + y * width) * 4;
-        let chanels = smoothX(
-          pointIndex,
-          gKernel,
-          y * width * 4,
-          ((1 + y) * width - 1) * 4,
-          originImageData.data
-        );
-        chanels.forEach((chanel, index) => {
-          smoothData[pointIndex + index] = chanel;
-        });
-      }
-    }
+    // 通过 smoothX 函数对原有像素进行横向扫描，存储处理后像素于 smoothData
+    // do something
 
-    // 对纵向像素进行处理，实现 smoothY 函数
+    // 对纵向像素进行处理，并实现 smoothY 函数
     // do something
 
     // 处理完成将平滑后的人脸像素输出到画布
     // 类似 handleOldTap 最后操作
     // do something
-    
   },
   handleClipTap() {
     let app = getApp();
@@ -180,12 +166,14 @@ Page({
       width: resultImageData.width,
       height: resultImageData.height
     };
+    
+    let { pixelRatio } = wx.getSystemInfoSync();
     wx.canvasToTempFilePath({
       canvasId: "canvas",
       width: resultImageData.width,
       height: resultImageData.height,
-      destWidth: resultImageData.width * 2,
-      destHeight: resultImageData.height * 2,
+      destWidth: resultImageData.width * pixelRatio,
+      destHeight: resultImageData.height * pixelRatio,
       success: ({ tempFilePath }) => {
         app.globalData.filterTemUrl = tempFilePath;
         console.log(tempFilePath);

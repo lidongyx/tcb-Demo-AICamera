@@ -106,16 +106,7 @@ Page({
         }
       } else {
         // 高边对齐，左右移动
-        let halfWidth = clipAspectRatio / imageAspectRatio / 2;
-        left = middleWidth - halfWidth;
-        right = middleWidth + halfWidth;
-        if (left < 0) {
-          right += -left;
-          left = 0;
-        } else if (right > 1) {
-          left = 1 - right + left;
-          right = 1;
-        }
+        // do something
       }
 
       this.setData({
@@ -128,18 +119,9 @@ Page({
       });
 
       let context = wx.createCanvasContext(`canvas-${clipAspectRatio}`);
-      context.drawImage(
-        url,
-        Math.floor(left * imageWidth),
-        Math.floor(top * imageHeight),
-        Math.floor((right - left) * imageWidth),
-        Math.floor((bottom - top) * imageHeight),
-        0,
-        0,
-        (this.data.sysInfo.windowWidth / 750) * clipWidth,
-        (this.data.sysInfo.windowWidth / 750) * clipHeight
-      );
-      context.draw(false);
+      // drawImage 绘制图像到 canvas 作展示
+      // do something
+      
     });
   },
   async handleSaveTap() {
@@ -170,9 +152,7 @@ Page({
 
       // 将生成的文件上传到云端，在 db 里存下处理前后 fileID，记录下时间戳
       // do something
-      
 
-      
       wx.hideLoading();
       wx.showToast({
         title: "保存成功",

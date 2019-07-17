@@ -203,12 +203,14 @@ Page({
       width: resultImageData.width,
       height: resultImageData.height
     };
+    
+    let { pixelRatio } = wx.getSystemInfoSync();
     wx.canvasToTempFilePath({
       canvasId: "canvas",
       width: resultImageData.width,
       height: resultImageData.height,
-      destWidth: resultImageData.width * 2,
-      destHeight: resultImageData.height * 2,
+      destWidth: resultImageData.width * pixelRatio,
+      destHeight: resultImageData.height * pixelRatio,
       success: ({ tempFilePath }) => {
         app.globalData.filterTemUrl = tempFilePath;
         console.log(tempFilePath);

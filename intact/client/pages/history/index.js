@@ -14,17 +14,9 @@ Page({
       return;
     }
     try {
-      // 查找 20 条数据并根据创建时间倒序排列
+      // 查找 20 条数据并根据创建时间倒序排列，将所有的原始图片、处理图片的 fileID 存在 list 中
       // do something
       
-      // 查找 完成 得到数据列表 data
-      this.setData({
-        list: data.reduce((list, { origin, output }) => {
-          list.push(origin);
-          list.push(output);
-          return list;
-        }, [])
-      });
     } catch (e) {
       console.log(e);
       wx.showToast({
